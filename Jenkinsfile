@@ -26,7 +26,7 @@ pipeline{
         }
 		stage('sending mail'){
 			steps{
-				emailext body: 'build success', subject: 'jenkins notification', to: 'mnsvp111@gmail.com'
+				emailext body: 'build ssuccess', subject: 'jenkins notification', to: 'mnsvp111@gmail.com'
 			}
 		}
 	}
