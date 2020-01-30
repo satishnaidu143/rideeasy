@@ -26,8 +26,9 @@ pipeline{
         }
 		stage('docker'){
             steps{
-                sh label: '', script: ''' cd /var/lib/jenkins/workspace/jenkisfile
+                sh label: '', script: ''' cd /home/ubuntu
 				pwd
+				sudo chmod 777 .viminfo
                 docker image build -t ride_1.0 .
                 docker container run --name ride -d -p 8081:8080 ride_1.0'''
             }

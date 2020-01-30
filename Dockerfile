@@ -1,6 +1,4 @@
-# Pull base image 
-From tomcat:8-jre8 
-
-# Maintainer 
-MAINTAINER "valaxytech@gmail.com" 
-COPY ./webapp.war /usr/local/tomcat/webapps
+FROM tomcat:8
+ADD https://springpetclinicjarfile.s3-us-west-2.amazonaws.com/ride.war /usr/local/tomcat/webapps
+EXPOSE 8080
+MAINTAINER "satish"
