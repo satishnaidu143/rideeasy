@@ -26,9 +26,9 @@ pipeline{
         }
 		stage('docker'){
             steps{
-                sh label: '', script: ''' pwd
+                sh label: '', script: ''' cd /home/ubuntu
+				su ubuntu
 				whoami
-				docker info
                 docker image build -t ride_1.0 .
                 docker container run --name ride -d -p 8081:8080 ride_1.0'''
             }
