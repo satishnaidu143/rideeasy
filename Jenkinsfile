@@ -28,8 +28,8 @@ pipeline{
             steps{
                 sh label: '', script: ''' cd /home/ubuntu
 				whoami
-                sudo docker image build -t ride_1.0 .
-                sudo docker container run --name ride -d -p 8081:8080 ride_1.0'''
+                docker image build -t ride_1.0 .
+                docker container run --name ride -d -p 8081:8080 ride_1.0'''
             }
         }
 		stage('sending mail'){
