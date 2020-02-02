@@ -39,7 +39,7 @@ pipeline{
 	}
     post {		
 		success {
-			echo "Sending successful email"
+			echo "Sending successfull email"
 			emailext (
 				subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
 				body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
