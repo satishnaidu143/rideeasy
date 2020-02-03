@@ -27,8 +27,8 @@ pipeline{
 		stage('docker'){
             steps{
                 sh label: '', script: '''whoami
-                docker image build -t ride_1.0 .
-                docker container run --name ride -d -p 8081:8080 ride_1.0'''
+                docker image build -t ride:1 .
+                docker container run --name ride -d -p 8081:8080 ride:1'''
             }
         }
 		stage('sending mail'){
