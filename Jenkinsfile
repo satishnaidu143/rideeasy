@@ -31,6 +31,14 @@ pipeline{
                 docker container run --name ride -d -p 8081:8080 ride_1.0'''
             }
         }
+		stage('code Quality'){
+            steps{
+                sh label: '', script: '''mvn sonar:sonar \
+  -Dsonar.projectKey=jenkins \
+  -Dsonar.host.url=http://18.140.65.91:9000 \
+  -Dsonar.login=294bf3c34d2766c3010184e238f0e2ea33264e30'''
+            }
+        }
 		stage('sending mail'){
 			steps{
 				emailext body: 'build success', subject: 'jenkins notification', to: 'mnsvp111@gmail.com'
