@@ -27,27 +27,19 @@ pipeline{
 		stage('docker'){
             steps{
                 sh label: '', script: '''whoami
-                docker image build -t ride:1 .
-                docker container run --name ride -d -p 8081:8080 ride:1'''
-            }
-        }
-		stage('code Quality'){
-            steps{
-                sh label: '', script: '''mvn sonar:sonar \
-  -Dsonar.projectKey=jenkins \
-  -Dsonar.host.url=http://18.140.65.91:9000 \
-  -Dsonar.login=294bf3c34d2766c3010184e238f0e2ea33264e30'''
+                docker image build -t ride_1.0 .
+                docker container run --name ride -d -p 8081:8080 ride_1.0'''
             }
         }
 		stage('sending mail'){
 			steps{
-				emailext body: 'build successs', subject: 'jenkins notification', to: 'mnsvp111@gmail.com'
+				emailext body: 'build success', subject: 'jenkins notification', to: 'mnsvp111@gmail.com'
 			}
 		}
 	}
     post {		
 		success {
-			echo "Sending successfull email"
+			echo "Sending successful email"
 			emailext (
 				subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
 				body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
