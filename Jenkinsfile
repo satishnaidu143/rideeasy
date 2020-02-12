@@ -24,13 +24,6 @@ pipeline{
                 junit 'server/target/surefire-reports/*.xml'
             }
         }
-		stage('docker'){
-            steps{
-                sh label: '', script: '''whoami
-                docker image build -t ride_1.0 .
-                docker container run --name ride -d -p 8081:8080 ride_1.0'''
-            }
-        }
 		stage('sending mail'){
 			steps{
 				emailext body: 'build success', subject: 'jenkins notification', to: 'mnsvp111@gmail.com'
