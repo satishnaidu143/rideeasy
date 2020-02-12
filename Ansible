@@ -9,7 +9,7 @@ pipeline{
 stage('package') {
   steps {
     sh label: '', script: '''mvn clean package
-sudo scp /var/lib/jenkins/workspace/yschool-pipe/webapp/target/webapp.war /home/ansible/ '''
+sudo scp /var/lib/jenkins/workspace/yschool-pipe/webapp/target/webapp.war /home/ansable/ '''
   }
 }
 stage('archive artifacts') {
