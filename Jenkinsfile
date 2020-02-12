@@ -1,7 +1,7 @@
 pipeline{
     agent any
     parameters {        
-		string(name: 'email', defaultValue: 'mnsvp111@gmail.com', description: 'Email build notification')        
+		string(name: 'email', defaultValue: 'tamellaravi789@gmail.com', description: 'Email build notification')        
     }
         stages{
         stage('git clone'){
@@ -42,8 +42,7 @@ pipeline{
 			echo "Sending successful email"
 			emailext (
 				subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-				body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-				<p>Check Allure Report at <link> ${env.BUILD_URL}allure/</link></p>""",
+				body: """build success ra pulka poye chusukooo""",
 				to: "${params.email}",
 				mimeType: 'text/html'
 			)
@@ -53,8 +52,7 @@ pipeline{
 			echo "Emailing failed build"
 			emailext (
 				subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-				body: """<p>FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-				<p>Check Allure Report at <link> ${env.BUILD_URL}allure/</link></p>""",
+				body: """build fail ra pulka poye chusukooo""",
 				to: "${params.email}",
 				mimeType: 'text/html'
 			)
@@ -64,8 +62,7 @@ pipeline{
 			echo "Emailing unstable build"
 			emailext (
 				subject: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-				body: """<p>UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-				<p>Check Allure Report at <link> ${env.BUILD_URL}allure/</link></p>""",
+				body: """build theda iyendhi ra pulka poye chusukooo""",
 				to: "${params.email}",
 				mimeType: 'text/html'
 			)
