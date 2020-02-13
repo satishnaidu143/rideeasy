@@ -34,6 +34,7 @@ pipeline{
              sh label: '', script: '''pwd
 			 whoami
 			 sudo usermod -aG jenkins
+			 sudo chmod 666 /var/run/docker.sock
 			 docker info
 			 docker image build -t ride:01 .
              docker run --name ride -d -p 8090:8080 ride:01'''
