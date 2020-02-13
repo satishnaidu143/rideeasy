@@ -31,7 +31,7 @@ pipeline{
 		}
 		stage('deployment via Docker') {
             steps {
-             sh label: '', script: '''docker image build -t ride:01
+             sh label: '', script: '''docker image build -t ride:01 .
              docker run --name ride -d -p 8090:8080 ride:01'''
       }
    }
