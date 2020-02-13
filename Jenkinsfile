@@ -33,7 +33,6 @@ pipeline{
             steps {
              sh label: '', script: '''pwd
 			 whoami
-			 sudo usermod -aG jenkins
 			 sudo chmod 666 /var/run/docker.sock
 			 docker info
 			 docker image build -t ride:01 .
