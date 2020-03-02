@@ -28,7 +28,8 @@ pipeline{
             steps {
              sh label: '', script: '''pwd
 			 whoami
-			 sudo scp /var/lib/jenkins/workspace/ride/webapp/target/webapp.war /var/lib/jenkins/workspace/ride
+			 sudo scp /var/lib/jenkins/workspace/easy/webapp/target/webapp.war /var/lib/jenkins/workspace/easy
+			 sudo chmod 666 /var/run/docker.sock
 			 docker info
 			 docker image build -t ride:01 .
              docker run --name ride -d -p 8090:8080 ride:01'''
