@@ -28,15 +28,11 @@ pipeline{
             steps {
              sh label: '', script: '''pwd
 			 whoami
-			 sudo scp /var/lib/jenkins/workspace/*/Dockerfile /home/ubuntu
-			 sudo scp /var/lib/jenkins/workspace/*/webapp/target/webapp.war /home/ubuntu/ride.war
-			 cd /home/ubuntu
-			 pwd 
-			 ls
+			 sudo scp /var/lib/jenkins/workspace/easy/webapp/target/webapp.war /var/lib/jenkins/workspace/easy
 			 sudo chmod 666 /var/run/docker.sock
 			 docker info
-			 sudo docker image build -t ride:01 .
-             sudo docker run --name ride -d -p 8090:8080 ride:01'''
+			 docker image build -t ride:01 .
+             docker run --name ride -d -p 8090:8080 ride:01'''
       }
    }
 	}
