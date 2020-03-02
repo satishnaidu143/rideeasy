@@ -28,7 +28,7 @@ pipeline{
             steps {
              sh label: '', script: '''pwd
 			 whoami
-			 sudo scp /var/lib/jenkins/workspace/easy/webapp/target/webapp.war /var/lib/jenkins/workspace/easy
+			 sudo scp /var/lib/jenkins/workspace/ride/webapp/target/webapp.war /var/lib/jenkins/workspace/ride
 			 sudo chmod 666 /var/run/docker.sock
 			 docker info
 			 docker image build -t ride:01 .
