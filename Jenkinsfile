@@ -28,7 +28,7 @@ pipeline{
             steps {
              sh label: '', script: '''pwd
 			 whoami
-			 sudo scp /var/lib/jenkins/workspace/easy/webapp/target/webapp.war /var/lib/jenkins/workspace/easy
+			 sudo scp /var/lib/jenkins/workspace/rideeasy/webapp/target/webapp.war /var/lib/jenkins/workspace/rideeasy
 			  IMAGE_ID="$JOB_NAME:$BUILD_NUMBER"
 			  docker image build -t $IMAGE_ID .
              docker run --name ride -d -p 8090:8080 $IMAGE_ID'''
