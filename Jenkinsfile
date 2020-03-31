@@ -38,8 +38,7 @@ pipeline{
 	}
       stage('updating image in DeployementFile') {
 		  steps{
-			  sh label: '', script: '''IMAGE="snaidu/$IMAGE_ID"
-			  sed -r 's/^(\s*)(image\s*:\s*$IMAGE\s*$)/\1image: $IMAGE/' deployment.yml '''
+			  sh label: '', script: '''sh satish.sh '''
 		  }
 	  }	
 	  stage('k8s Deployment') {
