@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: tomcat
-        image: $IMAGE_ID
+        image: snaidu/$IMAGE_ID
         ports:
           - containerPort: 8080
             protocol: TCP
