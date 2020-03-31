@@ -41,6 +41,7 @@ pipeline{
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
 			  kubectl apply -f deployment.yml
+			  kubectl rollout status deployment deployment-example
 			  kubectl set image deployment/deployment-example snaidu/rideeasy:1=snaidu/$IMAGE_ID
 			  kubectl apply -f service.yml '''
       }
