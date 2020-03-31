@@ -34,8 +34,14 @@ pipeline{
               docker tag $IMAGE_ID snaidu/$IMAGE_ID
 			  docker push snaidu/$IMAGE_ID
 			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID '''
-      }
+       }
 	}
+      stage('updating image in DeployementFile') {
+		  steps{
+			  sh label: '', script: '''IMAGE="snaidu/$IMAGE_ID"
+			  sed -r 's/^(\s*)(image\s*:\s*$IMAGE\s*$)/\1image: $IMAGE/' deployment.yml '''
+		  }
+	  }	
 	  stage('k8s Deployment') {
             steps {
              sh label: '', script: '''
