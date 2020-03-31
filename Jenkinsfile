@@ -40,7 +40,9 @@ pipeline{
             steps {
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
-			  kubectl apply -f deployment.yml
+			  kubectl apply -f deployment.yml --record
+			  kubectl rollout status deployments deployment-example
+			  kubectl rollout history deployments deployment-example
 			  kubectl apply -f service.yml '''
       }
    }

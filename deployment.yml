@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: tomcat
-        image: snaidu/rideeasy:21
+        image: snaidu/rideeasy:22
         ports:
           - containerPort: 8080
             protocol: TCP
