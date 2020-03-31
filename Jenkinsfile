@@ -24,7 +24,7 @@ pipeline{
                 junit 'server/target/surefire-reports/*.xml'
             }
         }
-		stage('deployment via Docker') {
+		stage('Pushing image to DockerHub') {
             steps {
              sh label: '', script: '''pwd
 			 whoami
@@ -34,12 +34,19 @@ pipeline{
               docker tag $IMAGE_ID snaidu/$IMAGE_ID
 			  docker push snaidu/$IMAGE_ID
 			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID
+			  IMAGE="snaidu/$IMAGE_ID"
+			  sudo sed -i "$IMAGE" ./deployment.yml '''
+      }
+	}
+	  stage('k8s Deployment') {
+            steps {
+             sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
 			  kubectl apply -f deployment.yml
 			  kubectl apply -f service.yml '''
       }
    }
-	}
+}
     post {		
 		success {
 			echo "Sending successful email"
