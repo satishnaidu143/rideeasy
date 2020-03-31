@@ -41,8 +41,8 @@ pipeline{
             steps {
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
-			  kubectl apply -f deployment.yml --record
 			  kubectl set image deployment/deployment-example snaidu/rideeasy:21=$IMAGE
+			  kubectl apply -f deployment.yml --record
 			  kubectl apply -f service.yml '''
       }
    }
