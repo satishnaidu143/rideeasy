@@ -31,7 +31,12 @@ pipeline{
 			 sudo scp /var/lib/jenkins/workspace/rideeasy/webapp/target/webapp.war /var/lib/jenkins/workspace/rideeasy
 			  IMAGE_ID="$JOB_NAME:$BUILD_NUMBER"
 			  docker image build -t $IMAGE_ID .
-              docker tag $IMAGE_ID snaidu/$IMAGE_ID '''
+              docker tag $IMAGE_ID snaidu/$IMAGE_ID
+			  docker push snaidu/$IMAGE_ID
+			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID
+			  kubectl apply -f namespaces.yml
+			  kubectl apply -f deployment.yml
+			  kubectl apply -f service.yml '''
       }
    }
 	}
