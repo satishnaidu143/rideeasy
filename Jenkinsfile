@@ -33,7 +33,8 @@ pipeline{
 			  docker image build -t $IMAGE_ID .
               docker tag $IMAGE_ID snaidu/$IMAGE_ID
 			  docker push snaidu/$IMAGE_ID
-			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID '''
+			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID
+			  IMAGE="snaidu/$IMAGE_ID" '''
        }
 	}
 	  stage('k8s Deployment') {
@@ -41,8 +42,7 @@ pipeline{
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
 			  kubectl apply -f deployment.yml --record
-			  kubectl rollout status deployments deployment-example
-			  kubectl rollout history deployments deployment-example
+			  kubectl set image deployment/deployment-example snaidu/rideeasy:21=$IMAGE
 			  kubectl apply -f service.yml '''
       }
    }
