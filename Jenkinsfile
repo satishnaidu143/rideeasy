@@ -36,16 +36,12 @@ pipeline{
 			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID '''
        }
 	}
-      stage('updating image in DeployementFile') {
-		  steps{
-			  sh label: '', script: '''sh satish.sh '''
-		  }
-	  }	
 	  stage('k8s Deployment') {
             steps {
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
 			  kubectl apply -f deployment.yml
+			  kubectl set image deployment.yml snaidu/rideeasy:1=snaidu/$IMAGE_ID
 			  kubectl apply -f service.yml '''
       }
    }
