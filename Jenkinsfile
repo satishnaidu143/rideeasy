@@ -34,7 +34,7 @@ pipeline{
               docker tag $IMAGE_ID snaidu/$IMAGE_ID
 			  docker push snaidu/$IMAGE_ID
 			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID
-			  sed "s/${IMAGE}/snaidu/$IMAGE_ID/g" ./deployment.yml '''
+			  sed "s/${IMAGE}/{snaidu/$IMAGE_ID}/g" ./deployment.yml '''
       }
 	}
 	  stage('k8s Deployment') {
