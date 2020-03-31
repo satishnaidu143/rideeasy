@@ -39,9 +39,9 @@ pipeline{
 	  stage('k8s Deployment') {
             steps {
              sh label: '', script: '''
-			  kubectl delete -f namespaces.yml
-			  kubectl delete -f deployment.yml
-			  kubectl delete -f service.yml '''
+			  kubectl apply -f namespaces.yml
+			  kubectl apply -f deployment.yml
+			  kubectl apply -f service.yml '''
       }
    }
 }
