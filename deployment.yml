@@ -15,9 +15,11 @@ spec:
         env1: dev
         app: tomcat
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
       - name: tomcat
         image: snaidu/rideeasy:22
+        imagePullPolicy: "Always"
         ports:
           - containerPort: 8080
             protocol: TCP
