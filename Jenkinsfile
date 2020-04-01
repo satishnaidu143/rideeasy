@@ -1,4 +1,8 @@
 pipeline{
+	environment {
+    IMAGE_ID="$JOB_NAME:$BUILD_NUMBER"
+	IMAGE="snaidu/$IMAGE_ID"
+  }
     agent any
     parameters {        
 		string(name: 'email', defaultValue: 'tamellaravi789@gmail.com', description: 'Email build notification')        
@@ -29,20 +33,17 @@ pipeline{
              sh label: '', script: '''pwd
 			 whoami
 			 sudo scp /var/lib/jenkins/workspace/rideeasy/webapp/target/webapp.war /var/lib/jenkins/workspace/rideeasy
-			  IMAGE_ID="$JOB_NAME:$BUILD_NUMBER"
 			  docker image build -t $IMAGE_ID .
-              docker tag $IMAGE_ID snaidu/$IMAGE_ID
-			  docker push snaidu/$IMAGE_ID
-			  docker rmi snaidu/$IMAGE_ID $IMAGE_ID
-			  IMAGE="snaidu/$IMAGE_ID" '''
+              docker tag $IMAGE_ID $IMAGE
+			  docker push $IMAGE
+			  docker rmi $IMAGE_ID $IMAGE '''
        }
 	}
 	  stage('k8s Deployment') {
             steps {
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
-			  kubectl set image deployment/deployment-example tomcat=snaidu/rideeasy:$BUILD_ID
-			  kubectl apply -f deployment.yml --record
+			  kubectl apply -f deployment.yml
 			  kubectl apply -f service.yml '''
       }
    }
