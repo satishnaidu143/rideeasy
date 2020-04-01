@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: tomcat
-        image: snaidu/rideeasy:22
+        image: snaidu/rideeasy:*
         imagePullPolicy: "Always"
         ports:
           - containerPort: 8080
