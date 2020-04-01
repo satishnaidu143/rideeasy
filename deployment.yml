@@ -2,19 +2,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-example
+  name: tomcat
   namespace: env-dev
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: tomcat
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 5
   template:
     metadata:
       labels:
