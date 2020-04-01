@@ -41,7 +41,7 @@ pipeline{
 	}
 	stage('updating latest image'){
             steps{
-                sh("sed -i.bak 's#snaidu/rideeasy:*#${IMAGE}#' ./deployment.yml")
+                sh("sed -i.bak 's#snaidu/rideeasy:1#${IMAGE}#' ./deployment.yml")
             }
         }
 	  stage('k8s Deployment') {
