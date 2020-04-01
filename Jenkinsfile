@@ -39,11 +39,16 @@ pipeline{
 			  docker rmi $IMAGE_ID $IMAGE '''
        }
 	}
+	stage('updating latest image'){
+            steps{
+                sh("sed -i.bak 's#snaidu/rideeasy:22#${IMAGE}#' ./depolyment.yaml")
+            }
+        }
 	  stage('k8s Deployment') {
             steps {
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
-			  kubectl apply -f deployment.yml
+			  kubectl apply -f deployment.yml 
 			  kubectl apply -f service.yml '''
       }
    }
