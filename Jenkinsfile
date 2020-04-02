@@ -32,11 +32,11 @@ pipeline{
             steps {
              sh label: '', script: '''pwd
 			 whoami
-			 sudo scp /var/lib/jenkins/workspace/rideeasy/webapp/target/webapp.war /var/lib/jenkins/workspace/rideeasy
+			 sudo scp /var/lib/jenkins/workspace/$JOB_NAME/webapp/target/webapp.war /var/lib/jenkins/workspace/$JOB_NAME
 			  docker image build -t $IMAGE_ID .
               docker tag $IMAGE_ID $IMAGE
 			  docker push $IMAGE
-			  docker rmi $IMAGE_ID $IMAGE '''
+			  docker rmi tomcat:8 $IMAGE_ID $IMAGE '''
        }
 	}
 	stage('updating latest image'){
@@ -48,7 +48,7 @@ pipeline{
             steps {
              sh label: '', script: '''
 			  kubectl apply -f namespaces.yml
-			  kubectl apply -f deployment.yml 
+			  kubectl apply -f deployment.yml --record
 			  kubectl apply -f service.yml '''
       }
    }
