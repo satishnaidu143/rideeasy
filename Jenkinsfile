@@ -68,7 +68,7 @@ pipeline{
 			echo "Emailing failed build"
 			emailext (
 				subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-				body: """build fail ra pulka poye chusuko""",
+				body: """build fail ra pulka poye chusuko $BUILD_URL""",
 				to: "${params.email}",
 				mimeType: 'text/html'
 			)
