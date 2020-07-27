@@ -70,7 +70,7 @@ pipeline{
 			echo "Sending successful email"
 			emailext (
 				subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-				body: """build success ra pulka poye chusukooo""",
+				body: """build success ra pulka poye chusukooo $BUILD_URL""",
 				to: "${params.email}",
 				mimeType: 'text/html'
 			)
@@ -80,7 +80,7 @@ pipeline{
 			echo "Emailing failed build"
 			emailext (
 				subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-				body: """build fail ra pulka poye chusuko""",
+				body: """build fail ra pulka poye chusuko $BUILD_URL""",
 				to: "${params.email}",
 				mimeType: 'text/html'
 			)
@@ -90,7 +90,7 @@ pipeline{
 			echo "Emailing unstable build"
 			emailext (
 				subject: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-				body: """build theda iyendhi ra pulka poye chusukooo""",
+				body: """build theda iyendhi ra pulka poye chusukooo $BUILD_URL""",
 				to: "${params.email}",
 				mimeType: 'text/html'
 			)
